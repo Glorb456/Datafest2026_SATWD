@@ -14,6 +14,13 @@ for i = 1:length(diag_name)
 end 
 diag_key_array = diag_key_array';
 
-%%
+
 encounters = readtable('encounters.csv');
 prim_diag = encounters.PrimaryDiagnosisKey;
+encounter_key = encounters.EncounterKey; 
+encounters_drug_related = [];
+for i = 1:length(prim_diag)
+    if ismember(prim_diag(i), diag_key_array)
+        encounters_drug_related(end+1) = encounter_key(i);
+    end 
+end 
