@@ -10,7 +10,6 @@ function [filtered_patientKeys] = filter_patients(patient_keys, Admit_days)
         admitted
 %}
    
-    Admit_days = Admit_days(indices_without_NA);
     indices_without_NA = Admit_days ~= "NA";
     filtered_patientKeys = patient_keys(indices_without_NA);
 end
