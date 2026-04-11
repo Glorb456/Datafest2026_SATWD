@@ -27,4 +27,9 @@ answers_question4 = answers(indices_question4);
 indices_yes1 = find(answers_question1 == "Yes");
 %% Mapping the different areas where the different types of care are
 
-zipcodes = 
+departments_data = readtable("departments.csv");
+
+departments_label = departments_data.DepartmentName;
+census_data = departments_data.CensusTract;
+zipcodes = departments_data.PostalCode;
+
