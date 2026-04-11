@@ -1,3 +1,4 @@
+clear; clf;
 data = readtable('diagnosis.csv');
 %getting specific columns in the data 
 diag_name = data.DiagnosisName;
@@ -14,13 +15,20 @@ for i = 1:length(diag_name)
 end 
 diag_key_array = diag_key_array';
 
-
 encounters = readtable('encounters.csv');
-prim_diag = encounters.PrimaryDiagnosisKey;
+
+% primary_keys = lower(strip(string(encounters.PrimaryDiagnosisKey)));
+% target_keys  = lower(strip(string(diag_key_array)));
+% 
+% is_drug_related = ismember(primary_keys, target_keys);
+% encounters_drug_related = encounters.EncounterKey(is_drug_related);
+% 
+
+primary_diag_key = encounters.PrimaryDiagnosisKey;
 encounter_key = encounters.EncounterKey; 
 encounters_drug_related = [];
-for i = 1:length(prim_diag)
-    if ismember(prim_diag(i), diag_key_array)
+for i = 1:length(primary_diag_key)
+    if ismember(primary_diag_key(i), diag_key_array,'IgnoreCase', true) == 1
         encounters_drug_related(end+1) = encounter_key(i);
     end 
 end 
