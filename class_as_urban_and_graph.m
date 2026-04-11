@@ -49,7 +49,10 @@ function updated_census_and_demographic_table = class_as_urban_and_graph(census,
     % 3. Summarize for Graphing
     % This aggregates the data so we have one row per unique location/race combo
     % Assuming varX/varY are CENTLAT and CENTLON
-    summary_table = groupsummary(combined_data, {'CENTLAT', 'CENTLON', 'OmbRace'});
+    % This adds a column 'GroupCount' and a column 'id_list' containing the IDs
+summary_table = groupsummary(combined_data, {'CENTLAT', 'CENTLON', 'OmbRace'}, ...
+    @(x) {x}, 'DurableKey'); 
+summary_table.Properties.VariableNames{end} = 'PatientIDsAtThisLoc';
 
     % 4. Urban/Rural Classification
     % Filter Shapefile to Kansas only
@@ -71,6 +74,7 @@ function updated_census_and_demographic_table = class_as_urban_and_graph(census,
     end
 
     % Assign results
+
     summary_table.Classification(isUrban) = "Urban";
 
     % 5. Graphing
@@ -90,7 +94,6 @@ function updated_census_and_demographic_table = class_as_urban_and_graph(census,
 
     % Output the final table
     updated_census_and_demographic_table = summary_table;
-    updated_census_and_demographic_table.patientIDlist = patientIDlist;
 
 end
 
