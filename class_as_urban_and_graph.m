@@ -3,11 +3,6 @@
 % FIPS census codes. after this it checks if the provided census points are
 
 % within urban areas and graphs them accordingly
-
-
-
-
-
 % inputs
 
 % loaded census file as a table
@@ -93,8 +88,3 @@ function updated_census_and_demographic_table = class_as_urban_and_graph(census,
 
 end
 
-patients = readtable("patients.csv");
-census  = readtable("tigercensuscodes.csv");
-shp_file = readgeotable("shape_rural_urban.shp"); 
-
-updated_census_and_demographic_table = class_as_urban_and_graph(census, patients, shp_file, 5)
