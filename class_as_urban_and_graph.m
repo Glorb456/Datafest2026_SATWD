@@ -3,6 +3,11 @@
 % FIPS census codes. after this it checks if the provided census points are
 
 % within urban areas and graphs them accordingly
+
+
+
+
+
 % inputs
 
 % loaded census file as a table
@@ -85,6 +90,7 @@ function updated_census_and_demographic_table = class_as_urban_and_graph(census,
 
     % Output the final table
     updated_census_and_demographic_table = summary_table;
+    updated_census_and_demographic_table.patientIDlist = patientIDlist;
 
 end
 
