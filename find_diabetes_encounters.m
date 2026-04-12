@@ -1,4 +1,4 @@
-function encounters_drug_related = find_diabetes_encounters()
+function encounters_drug_related = find_diabetes_encounters(data, encounters)
     %returns all of the encounters in the dataset that are about type 2
     %diabetes
 
@@ -18,8 +18,6 @@ function encounters_drug_related = find_diabetes_encounters()
         end 
     end 
     diag_key_array = diag_key_array';
-    
-    encounters = readtable('encounters.csv');
     
     primary_diag_key = encounters.PrimaryDiagnosisKey;
     encounter_key = encounters.EncounterKey; 

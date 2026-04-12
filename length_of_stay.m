@@ -1,9 +1,10 @@
 %% checking for length of stay for people who got admitted
 
 encounter_data = readtable("encounters.csv");
-
+diagnosis_data = readtable("diagnosis.csv");
 %Getting PatientDurablekey
 patient_key = encounter_data.PatientDurableKey;
+encounter_key = encounter_data.EncounterKey;
 
 % Get all the admit info
 Admit_day = encounter_data.AdmitDay;
@@ -44,3 +45,17 @@ dischargeDates = datetime(filtered_Discharge_year + "-" + filtered_Discharge_mon
 
 % Calculate length of stay in days
 lengthOfStay = days(dischargeDates - admitDates);
+
+encounters_diabetes = find_diabetes_encounters(diagnosis_data, encounter_data);
+
+%Get index of diabetes
+%%
+
+index_of_diabetes = ismember(encounter_key, encounters_diabetes);
+index_of_admit_days = ismember(Admit_day, "NA");
+
+index_of_days_wo_na = ~index_of_admit_days;
+
+index_wo_NA_and_diabetes = (index_of_days_wo_na & index_of_diabetes);
+
+admitted_patient_key = patient_key(index_wo_NA_and_diabetes);
