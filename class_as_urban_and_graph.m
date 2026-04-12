@@ -43,7 +43,7 @@ function updated_census_and_demographic_table = class_as_urban_and_graph(census,
 
     % 2. Join the Tables
     % Link census geometry (Lat/Lon) to patient data via FIPS codes
-    combined_data = innerjoin(census, filtered_patients, ...
+    combined_data = outerjoin(census, filtered_patients, ...
         'LeftKeys', 'GEOID', 'RightKeys', 'CensusBlockGroupFipsCode');
 
     % 3. Summarize for Graphing
@@ -75,23 +75,7 @@ summary_table.Properties.VariableNames{end} = 'PatientIDsAtThisLoc';
 
     % Assign results
 
-    summary_table.Classification(isUrban) = "Urban";
-
-    % 5. Graphing
-    figure
-    urbanIdx = (summary_table.Classification == "Urban");
-
-    % Scatter plot: Urban points in Red, Rural in Blue
-    geoscatter(summary_table.CENTLAT(urbanIdx), summary_table.CENTLON(urbanIdx), ...
-        'r', 'filled', 'DisplayName', 'Urban')
-    hold on
-    geoscatter(summary_table.CENTLAT(~urbanIdx), summary_table.CENTLON(~urbanIdx), ...
-        'b', 'filled', 'DisplayName', 'Rural')
-
-    geobasemap streets
-    legend
-    title('Kansas Patient Distribution: Urban vs Rural')
-    geolimits([36.5 40.5], [-102.5, -94.5]) 
+    summary_table.Classification(isUrban) = "Urban"; 
 
     % Output the final table
     updated_census_and_demographic_table = summary_table;
