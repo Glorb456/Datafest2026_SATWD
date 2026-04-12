@@ -50,7 +50,7 @@ function updated_census_and_demographic_table = class_as_urban_and_graph(census,
     % This aggregates the data so we have one row per unique location/race combo
     % Assuming varX/varY are CENTLAT and CENTLON
     % This adds a column 'GroupCount' and a column 'id_list' containing the IDs
-summary_table = groupsummary(combined_data, {'CENTLAT', 'CENTLON', 'OmbRace'}, ...
+summary_table = groupsummary(combined_data, {'CENTLAT', 'CENTLON'}, ...
     @(x) {x}, 'DurableKey'); 
 summary_table.Properties.VariableNames{end} = 'PatientIDsAtThisLoc';
 
