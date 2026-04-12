@@ -46,7 +46,7 @@ index_of_days_wo_na = ~index_of_admit_days;
 index_wo_NA_and_diabetes = (index_of_days_wo_na & index_of_diabetes);
 
 admitted_patient_key = patient_key(index_wo_NA_and_diabetes);
-<<<<<<< HEAD
+
 
 filtered_Admit_day = Admit_day(index_wo_NA_and_diabetes);
 filtered_Admit_hour = Admit_hour(index_wo_NA_and_diabetes);
