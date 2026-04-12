@@ -33,7 +33,11 @@ encounters_diabetes = find_diabetes_encounters(diagnosis_data, encounter_data);
 
 %Get index of diabetes
 %%
+patients = readtable("patients.csv");
+census  = readtable("tigercensuscodes.csv");
+shp_file = readgeotable("C:\Users\wbead\Downloads\masterlist\final\tl_2020_us_uac20.shp");
 
+%%
 index_of_diabetes = ismember(encounter_key, encounters_diabetes);
 index_of_admit_days = ismember(Admit_day, "NA");
 
@@ -42,6 +46,7 @@ index_of_days_wo_na = ~index_of_admit_days;
 index_wo_NA_and_diabetes = (index_of_days_wo_na & index_of_diabetes);
 
 admitted_patient_key = patient_key(index_wo_NA_and_diabetes);
+<<<<<<< HEAD
 
 filtered_Admit_day = Admit_day(index_wo_NA_and_diabetes);
 filtered_Admit_hour = Admit_hour(index_wo_NA_and_diabetes);
@@ -63,3 +68,12 @@ dischargeDates = datetime(filtered_Discharge_year + "-" + filtered_Discharge_mon
 
 % Calculate length of stay in days
 lengthOfStay = days(dischargeDates - admitDates);
+=======
+diabetes_patient_key = patient_key(index_of_diabetes);
+
+
+
+updated_census_and_demographic_table = class_as_urban_and_graph(census, patients, shp_file, admitted_patient_key)
+
+updated_census_and_demographic_table1 = class_as_urban_and_graph(census, patients, shp_file, diabetes_patient_key)
+>>>>>>> e1d2e2ad385a849647d94c5aadc61e8cbb597b21

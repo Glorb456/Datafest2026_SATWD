@@ -91,6 +91,7 @@ summary_table.Properties.VariableNames{end} = 'PatientIDsAtThisLoc';
     geobasemap streets
     legend
     title('Kansas Patient Distribution: Urban vs Rural')
+    geolimits([36.5 40.5], [-102.5, -94.5]) 
 
     % Output the final table
     updated_census_and_demographic_table = summary_table;

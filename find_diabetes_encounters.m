@@ -12,7 +12,11 @@ function encounters_drug_related = find_diabetes_encounters(data, encounters)
     
     %getting keys for all synthetic narcotics diagnosis
     for i = 1:length(diag_name)
+<<<<<<< HEAD
         if contains(diag_name(i), "diabetes mellitus", "IgnoreCase", true)
+=======
+        if contains(diag_name(i), "Asthma", "IgnoreCase", true)
+>>>>>>> e1d2e2ad385a849647d94c5aadc61e8cbb597b21
             num_synth_diag = num_synth_diag + 1; 
             diag_key_array(end+1) = diag_key_data(i);
         end 
