@@ -68,12 +68,3 @@ dischargeDates = datetime(filtered_Discharge_year + "-" + filtered_Discharge_mon
 
 % Calculate length of stay in days
 lengthOfStay = days(dischargeDates - admitDates);
-=======
-diabetes_patient_key = patient_key(index_of_diabetes);
-
-
-
-updated_census_and_demographic_table = class_as_urban_and_graph(census, patients, shp_file, admitted_patient_key)
-
-updated_census_and_demographic_table1 = class_as_urban_and_graph(census, patients, shp_file, diabetes_patient_key)
->>>>>>> e1d2e2ad385a849647d94c5aadc61e8cbb597b21
